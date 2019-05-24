@@ -2,7 +2,7 @@
 
 ## Containers
 
-- Traefik - reverse proxy, I've set up so all \*.yourdomain domains go to the laptop server, then traefik makes it so service_name.yourdomain goes to the right service
+- Traefik - reverse proxy, I've set it up so all \*.yourdomain domains go to the machine with the media server, then traefik makes it so service_name.yourdomain goes to the right service
 - Jellyfin - media server
 - Sonnarr - tv downloader
 - Radarr - movie downloader
@@ -51,13 +51,13 @@ sudo docker-compose up -d
 sudo docker-compose ps
 ```
 
-If this is all setup correctly visiting your domain or the ip address of your machine should open Heimdall, and <your ip>:8112 should open the Deluge web ui
+If this is all setup correctly visiting your domain or the ip address of your machine should open Heimdall, and `<your ip>:8112` should open the Deluge web ui
 
 5. Setup all the containers
 
-    - Deluge needs to be setup to download to `/downloads/incomplete` and move completed downloads to `/downloads/completed`
-    - You need to add some torrent trackers to Jackett
-    - For sonarr and radarr you need to connect them to deluge and to the trackers you set up on Jackett. You may also need to click add movie/add series and setup the path to be `/movies` and `/tv` respectively
-    - Ombi needs to be connected to sonarr, radarr and jellyfin. You could also set up passwordless login if you're only going to be using it on your network
-    - IIRC you just need to go through the setup wizard for Jellyfin
-    - Add links to everything on Heimdall
+   - Deluge needs to be setup to download to `/downloads/incomplete` and move completed downloads to `/downloads/completed`
+   - You need to add some torrent trackers to Jackett
+   - For sonarr and radarr you need to connect them to deluge and to the trackers you set up on Jackett. You may also need to click add movie/add series and setup the path to be `/movies` and `/tv` respectively
+   - Ombi needs to be connected to sonarr, radarr and jellyfin. You could also set up passwordless login if you're only going to be using it on your network
+   - IIRC you just need to go through the setup wizard for Jellyfin
+   - Add links to everything on Heimdall
