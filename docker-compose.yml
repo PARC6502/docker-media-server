@@ -129,5 +129,4 @@ services:
       - "9090:8080" # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
-    labels:
-      - "traefik.http.routers.traefik.rule=Host(`traefik.${DOMAIN}`)"
+
