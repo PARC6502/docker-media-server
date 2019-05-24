@@ -15,9 +15,8 @@ I'm using this setup alongside a DNS server (dnsmasq). The DNS server allows dev
 ## Caveats
 
 - I'm still doing port mapping, but it's not needed with Traefik, and if your machine is publicly accessible you definitely want to lock down ports (I know nothing about security so if it will be public do your own research)
-- Deluge is just accessible via IP on this setup, haven't setup a domain for it yet (since it has a few open ports I wasn't sure Traefik would detect the right one and haven't bothered to test it yet)
+- Traefik is only accessible by IP `<your IP>:9090/api/rawdata`
 - This is still a new setup so I've not tested it much
-- In my own setup the domain wasn't a variable, think it should still work though (let me know if it doesn't)
 
 ## Setup
 
@@ -61,3 +60,16 @@ If this is all setup correctly visiting your domain or the ip address of your ma
    - Ombi needs to be connected to sonarr, radarr and jellyfin. You could also set up passwordless login if you're only going to be using it on your network
    - IIRC you just need to go through the setup wizard for Jellyfin
    - Add links to everything on Heimdall
+
+## Updating
+
+If you've made changes to the docker compose file you'll need to stash them for the git pull to work
+
+```bash
+git stash
+```
+
+```bash
+git pull
+sudo docker-compose up -d --force-recreate --build
+```
