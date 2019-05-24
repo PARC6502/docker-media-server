@@ -89,6 +89,8 @@ services:
       - ./deluge:/config
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
+    labels:
+      - "traefik.http.routers.deluge.rule=Host(`deluge.${DOMAIN}`)"
   jackett:
     image: linuxserver/jackett
     container_name: jackett
@@ -127,3 +129,5 @@ services:
       - "9090:8080" # The Web UI (enabled by --api)
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock # So that Traefik can listen to the Docker events
+    labels:
+      - "traefik.http.routers.traefik.rule=Host(`traefik.${DOMAIN}`)"
