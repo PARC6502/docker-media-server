@@ -27,7 +27,7 @@ services:
       - TZ=${TZ}
     volumes:
       - ./sonarr:/config
-      - ${DLDIR}/completed:/downloads
+      - ${DLDIR}/completed:/downloads/completed
       - ${TVDIR}:/tv
       - /etc/localtime:/etc/localtime:ro
     depends_on:
