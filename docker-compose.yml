@@ -34,7 +34,7 @@ services:
       - jackett
       - deluge
     labels:
-      - "traefik.http.routers.sonarr.rule=Host(`sonarr.${DOMAIN})"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.${DOMAIN}`)"
   radarr:
     container_name: radarr
     image: linuxserver/radarr
@@ -54,7 +54,7 @@ services:
       - jackett
       - deluge
     labels:
-      - "traefik.http.routers.radarr.rule=Host(`radarr.${DOMAIN})"
+      - "traefik.http.routers.radarr.rule=Host(`radarr.${DOMAIN}`)"
   ombi:
     image: linuxserver/ombi
     container_name: ombi
@@ -68,7 +68,7 @@ services:
       - ./ombi:/config
       - /etc/localtime:/etc/localtime:ro
     labels:
-      - "traefik.http.routers.ombi.rule=Host(`ombi.${DOMAIN})"
+      - "traefik.http.routers.ombi.rule=Host(`ombi.${DOMAIN}`)"
     depends_on:
       - radarr
       - sonarr
@@ -103,7 +103,7 @@ services:
       - ${DLDIR}/completed:/downloads
       - /etc/localtime:/etc/localtime:ro
     labels:
-      - "traefik.http.routers.jackett.rule=Host(`jackett.${DOMAIN})"
+      - "traefik.http.routers.jackett.rule=Host(`jackett.${DOMAIN}`)"
   heimdall:
     image: linuxserver/heimdall
     container_name: heimdall
