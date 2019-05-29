@@ -1,4 +1,4 @@
-# Docker media server
+# [Docker media server](https://github.com/PARC6502/docker-media-server)
 
 ## Containers
 
@@ -10,7 +10,7 @@
 - Deluge - torrent client, required for downloaders to work
 - Jackett - Torrent tracker api, required for downloaders to work
 
-I'm using this setup alongside a DNS server (dnsmasq). The DNS server allows devices inside my network to access the media server through a domain. Some routers will allow you to do this, and it can also be done by pihole/adguard home/other DNS based ad blockers.
+I'm using this setup alongside a DNS server (dnsmasq). The DNS server allows devices inside my network to access the media server through a domain. Some routers will allow you to do this, and it can also be done by pihole/adguard home/other DNS based ad blockers. You can view my DNS server setup [here.](https://github.com/PARC6502/docker-dns-dhcp)
 
 ## Caveats
 
