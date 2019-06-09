@@ -1,3 +1,4 @@
+*.tar.gz
 .env
 jellyfin
 sonarr
@@ -5,3 +6,4 @@ radarr
 ombi
 deluge
 jackett
+transmission

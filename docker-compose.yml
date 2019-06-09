@@ -32,7 +32,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     depends_on:
       - jackett
-      - deluge
+      - transmission
     labels:
       - "traefik.http.routers.sonarr.rule=Host(`sonarr.${DOMAIN}`)"
   radarr:
@@ -52,7 +52,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     depends_on:
       - jackett
-      - deluge
+      - transmission
     labels:
       - "traefik.http.routers.radarr.rule=Host(`radarr.${DOMAIN}`)"
   ombi:
@@ -72,25 +72,25 @@ services:
     depends_on:
       - radarr
       - sonarr
-  deluge:
-    image: linuxserver/deluge
-    container_name: deluge
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
     ports:
-      - 8112:8112
-      - 8118:8118
-      - 58846:58846
-      - 58946:58946
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=Europe/London
+      - TZ=${TZ}
     volumes:
       - ${DLDIR}:/downloads
-      - ./deluge:/config
+      - ./transmission/config:/config
+      - ./transmission/watch:/watch
       - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
     labels:
-      - "traefik.http.routers.deluge.rule=Host(`deluge.${DOMAIN}`)"
+      - "traefik.http.routers.transmission.rule=Host(`transmission.${DOMAIN}`)"
   jackett:
     image: linuxserver/jackett
     container_name: jackett
