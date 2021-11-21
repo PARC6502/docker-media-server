@@ -9,6 +9,7 @@
 - Ombi - requester for radarr & sonarr
 - Deluge - torrent client, required for downloaders to work
 - Jackett - Torrent tracker api, required for downloaders to work
+- NZBGet - Usenet client, required for usenet downloads to work
 
 I'm using this setup alongside a DNS server (dnsmasq). The DNS server allows devices inside my network to access the media server through a domain. Some routers will allow you to do this, and it can also be done by pihole/adguard home/other DNS based ad blockers. You can view my DNS server setup [here.](https://github.com/PARC6502/docker-dns-dhcp)
 
@@ -34,7 +35,7 @@ nano .env
 2. Create the folders needed for the setup, replace the vars with actual directories unless you've put them in the bash environment
 
 ```bash
-mkdir -p jellyfin/config jellyfin/cache sonarr radarr ombi deluge jackett ${DLDIR}/completed ${DLDIR}/incomplete ${MOVIESDIR} ${TVDIR}
+mkdir -p jellyfin/config jellyfin/cache sonarr radarr ombi deluge jackett nzbget ${DLDIR}/completed ${DLDIR}/incomplete ${MOVIESDIR} ${TVDIR}
 ```
 
 (I've seen that some people need to change the permissions on the content folder, if you do `chmod -R 0777 content/` should work, although changing folder ownership is probs a better option)
@@ -55,8 +56,10 @@ If this is all setup correctly visiting your domain or the ip address of your ma
 5. Setup all the containers
 
    - Deluge needs to be setup to download to `/downloads/incomplete` and move completed downloads to `/downloads/completed`
+   - Nzbget needs to be setup if you plan on using a Usenet provider. Provide it with the credentials for your usenet provider.
    - You need to add some torrent trackers to Jackett
-   - For sonarr and radarr you need to connect them to deluge and to the trackers you set up on Jackett. You may also need to click add movie/add series and setup the path to be `/movies` and `/tv` respectively
+   - For sonarr and radarr you need to connect them to deluge and to the trackers you set up on Jackett. You may also need to click add movie/add series and setup the path to be `/movies` and `/tv` respectively.
+   If you're using usenet then you need to configure Sonarr and Radarr to use a Usenet indexer. One such indexer is nzbgeek.info where you need to register.
    - Ombi needs to be connected to sonarr, radarr and jellyfin. You could also set up passwordless login if you're only going to be using it on your network
    - IIRC you just need to go through the setup wizard for Jellyfin
    - Add links to everything on Heimdall
